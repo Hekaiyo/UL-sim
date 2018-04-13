@@ -5,11 +5,11 @@
     </h3>
     <p>&nbsp;</p>
     <div class="ui grid">
-      <div class = "four wide column">
+      <div class = "eight wide column">
         <!--todo-list v-bind:todos="todos"></todo-list-->
         <skill-list v-bind:skills="skills" v-bind:mainslot="mainslot"></skill-list>
       </div>
-      <div class = "twelve wide column">
+      <div class = "eight wide column">
         <display v-bind:skills="skills" v-bind:mainslot="mainslot"></display>
       </div>
     </div>
