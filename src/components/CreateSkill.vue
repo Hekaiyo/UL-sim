@@ -15,6 +15,7 @@ export default {
         rate: 0.1,
         enabled: true,
         main: false,
+        crit: false,
       });
     },
   },

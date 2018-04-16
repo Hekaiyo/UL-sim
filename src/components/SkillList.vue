@@ -4,11 +4,11 @@
     <h3 class='ui dividing header'>
       Main Slot
     </h3>
-    <main-slot v-bind:mainslot="mainslot"></main-slot>
+    <main-slot v-bind:mainslot="mainslot" v-bind:critdmg="critdmg"></main-slot>
     <h3 class='ui dividing header'>
       Sub slots
     </h3>
-    <skill v-on:delete-skill="deleteSkill" v-for="skill in skills" :key="skill" v-bind:skill="skill"></skill>
+    <skill v-on:delete-skill="deleteSkill" v-for="skill in skills" v-bind:skill="skill" v-bind:critdmg="critdmg"></skill>
     <create-skill v-on:add-skill="addSkill"></create-skill>
   </div>
 </template>
@@ -20,7 +20,7 @@ import MainSlot from './MainSlot';
 import CreateSkill from './CreateSkill';
 
 export default {
-  props: ['skills', 'mainslot'],
+  props: ['skills', 'mainslot', 'critdmg'],
   components: {
     Skill,
     MainSlot,

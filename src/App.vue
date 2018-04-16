@@ -7,10 +7,10 @@
     <div class="ui grid">
       <div class = "eight wide column">
         <!--todo-list v-bind:todos="todos"></todo-list-->
-        <skill-list v-bind:skills="skills" v-bind:mainslot="mainslot"></skill-list>
+        <skill-list v-bind:skills="skills" v-bind:mainslot="mainslot" v-bind:critdmg="critdmg"></skill-list>
       </div>
       <div class = "eight wide column">
-        <display v-bind:skills="skills" v-bind:mainslot="mainslot"></display>
+        <display v-bind:skills="skills" v-bind:mainslot="mainslot" v-bind:critdmg="critdmg"></display>
       </div>
     </div>
   </div>
@@ -39,13 +39,16 @@ export default {
         rate: 0.2,
         enabled: true,
         main: true,
+        crit: false,
       },
       skills: [{
         ap: 40,
         rate: 0.1,
         enabled: true,
         main: false,
+        crit: false,
       }],
+      critdmg: [0]
     };
   },
 };

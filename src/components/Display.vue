@@ -7,8 +7,11 @@
 </template>
 
 <script>
+
+import math from 'mathjs'
+
 export default {
-  props: ['skills', 'mainslot'],
+  props: ['skills', 'mainslot', 'critdmg'],
   methods: {
     calcBoost() {
       var fooo = this.skills.concat([this.mainslot]);
@@ -44,18 +47,37 @@ export default {
       let mainf = false;
       let mainv = 0;
       let avg = 0;
+      let critc = 0;
+      let mainc = false;
       for (let i = 0; i < arr.length; i += 1) {
         if (fullarr[arr[i]].main) {
           mainf = true;
-          mainv = fullarr[arr[i]].ap;
+          if (fullarr[arr[i]].crit) {
+            mainv = 50 + Number(this.critdmg[0]);
+            mainc = true;
+          }
+          else
+            mainv = fullarr[arr[i]].ap;
         }
-        total += fullarr[arr[i]].ap;
+        if (fullarr[arr[i]].crit) {
+          total += 50 + Number(this.critdmg[0]);
+          critc += 1;
+        }
+        else
+          total += fullarr[arr[i]].ap;
       }
       if (arr.length < 3) {
-        avg = total;
+        if (critc == 2)
+          avg = this.critdmg[0]
+        else
+          avg = total;
       } else if (mainf) {
+        if (mainc && critc > 1)
+          total -= (critc - 1) * (50 + this.critdmg[0]);
         avg = mainv + (total - mainv) / (arr.length - 1);
       } else {
+        if (critc > 1)
+          total -= math.combinations(critc, 2)*(50 + this.critdmg[0]);
         avg = total / arr.length * 2;
       }
       let prob = 1;
